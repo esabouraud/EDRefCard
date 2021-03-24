@@ -48,7 +48,7 @@ docker build -t edrefcard .
 
 Run the docker container in the background, exposed on port 8080 on the host:
 ```
-docker run -d --rm --name edrefcard -p 8080:80 edrefcard
+docker run -d --rm --name edrefcard -e PORT=80 -p 8080:80 edrefcard
 ```
 
 EDRefCard can then be accessed at http://localhost:8080

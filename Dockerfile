@@ -17,12 +17,11 @@ COPY ./www/ /var/www/html
 RUN mkdir /var/www/html/configs \
     && chmod uga+rw /var/www/html/configs 
 
-RUN echo "SetEnv PYTHONIOENCODING utf-8" >> /etc/apache2/apache2.conf
+RUN echo "SetEnv PYTHONIOENCODING utf-8" >> /etc/apache2/apache2.conf \
+    && sed -i 's/Listen 80/Listen ${PORT}/g' /etc/apache2/ports.conf
 
 RUN a2dissite 000-default.conf
 RUN a2ensite edrefcard.conf
-
-EXPOSE 80
 
 WORKDIR /var/www/html
 
